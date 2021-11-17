@@ -2,6 +2,8 @@ from gameplay.game import Game
 from scripts.split_difficulty import Diffculty
 import os
 import random
+import datetime
+
 
 os.system('cls')
 print('\n' + "_"*90)
@@ -20,6 +22,11 @@ random.shuffle(words_videjs)
 random.shuffle(words_gruts)
 guessed_words = list()
 print_words = ''
+today = datetime.date.today()
+print(today)
+
+
+
 
 while True:
 
