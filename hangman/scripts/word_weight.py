@@ -11,6 +11,7 @@ class Score:
         self.viegls = os.path.join(parent, "data", "easy_words.txt")
         self.videjs = os.path.join(parent, "data", "medium_words.txt")
         self.gruts = os.path.join(parent, "data", "hard_words.txt")
+        
 
     def translate(self):
         """Converts latvian letters with macron and cedilla to regular letter

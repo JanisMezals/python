@@ -3,12 +3,13 @@ from scripts.split_difficulty import Diffculty
 import os
 import random
 import datetime
+import requests
 
 
 os.system('cls')
-print('\n' + "_"*90)
-print("\n" + " "*30 + "Welcome to Hangman game!\n")
-print('\n' + "_"*90)
+print('\n' + "_" * 90)
+print("\n" + " " * 30 + "Welcome to Hangman game!\n")
+print('\n' + "_" * 90)
 difficulty = Diffculty()
 difficulty.file_exists()
 difficulty.write_files()
@@ -16,6 +17,8 @@ difficulty.write_files()
 words_viegls = difficulty.generate_difficulty("viegls")
 words_videjs = difficulty.generate_difficulty("videjs")
 words_gruts = difficulty.generate_difficulty("gruts")
+word_API = requests.get('https://random-word-api.herokuapp.com/word?number=1')
+
 
 random.shuffle(words_viegls)
 random.shuffle(words_videjs)
@@ -26,15 +29,18 @@ today = datetime.date.today()
 print(today)
 
 
-
-
 while True:
 
     n = 0
 
-    difficulty = input("\nChoose difficulty (type 1 ,2 ,3):\n 1 Easy\n 2 Normal\n 3 Hard\n")
-    while difficulty not in ["1", "2", "3"]:
-        difficulty = input("Error "*10 +"\n"+"please (type 1 ,2 ,3):\n 1 Easy\n 2 Normal\n 3 Hard\n")
+    difficulty = input(
+        "\nChoose difficulty (type 1 ,2 ,3 , 4 ):\n 1 Easy\n 2 Normal\n 3 Hard\n 4 API\n")
+    while difficulty not in ["1", "2", "3", "4"]:
+        difficulty = input(
+            "Error " *
+            10 +
+            "\n" +
+            "please (type 1 ,2 ,3 ,4):\n 1 Easy\n 2 Normal\n 3 Hard\n 4 API\n")
     difficulty = int(difficulty)
 
     os.system('cls')
@@ -43,7 +49,14 @@ while True:
         try:
             word_viegls = words_viegls.pop()
         except IndexError:
-            print("\n"+ "-"*70 +"\nIzvēlētajā grūtības failā ir beigušies vārdi!\n"+ "-"*70 +"\n")
+            print(
+                "\n" +
+                "-" *
+                70 +
+                "\nIzvēlētajā grūtības failā ir beigušies vārdi!\n" +
+                "-" *
+                70 +
+                "\n")
             raise
         game_viegls = Game(word_viegls)
         game_viegls.play()
@@ -57,7 +70,14 @@ while True:
             try:
                 word_videjs = words_videjs.pop()
             except IndexError:
-                print("\n"+ "-"*70 +"\nIzvēlētajā grūtības failā ir beigušies vārdi!\n"+ "-"*70 +"\n")
+                print(
+                    "\n" +
+                    "-" *
+                    70 +
+                    "\nIzvēlētajā grūtības failā ir beigušies vārdi!\n" +
+                    "-" *
+                    70 +
+                    "\n")
                 raise
             game_videjs = Game(word_videjs)
             game_videjs.play()
@@ -71,7 +91,14 @@ while True:
                 try:
                     word_gruts = words_gruts.pop()
                 except IndexError:
-                    print("\n"+ "-"*70 +"\nIzvēlētajā grūtības failā ir beigušies vārdi!\n"+ "-"*70 +"\n")
+                    print(
+                        "\n" +
+                        "-" *
+                        70 +
+                        "\nIzvēlētajā grūtības failā ir beigušies vārdi!\n" +
+                        "-" *
+                        70 +
+                        "\n")
                     raise
                 game_gruts = Game(word_gruts)
                 game_gruts.play()
@@ -85,7 +112,14 @@ while True:
                     try:
                         word_gruts = words_gruts.pop()
                     except IndexError:
-                        print("\n"+ "-"*70 +"\nIzvēlētajā grūtības failā ir beigušies vārdi!\n"+ "-"*70 +"\n")
+                        print(
+                            "\n" +
+                            "-" *
+                            70 +
+                            "\nIzvēlētajā grūtības failā ir beigušies vārdi!\n" +
+                            "-" *
+                            70 +
+                            "\n")
                         raise
                     game_gruts = Game(word_gruts)
                     game_gruts.play()
@@ -99,7 +133,14 @@ while True:
         try:
             word_videjs = words_videjs.pop()
         except IndexError:
-            print("\n"+ "-"*70 +"\nIzvēlētajā grūtības failā ir beigušies vārdi!\n"+ "-"*70 +"\n")
+            print(
+                "\n" +
+                "-" *
+                70 +
+                "\nIzvēlētajā grūtības failā ir beigušies vārdi!\n" +
+                "-" *
+                70 +
+                "\n")
             raise
         game_videjs = Game(word_videjs)
         game_videjs.play()
@@ -113,7 +154,14 @@ while True:
             try:
                 word_gruts = words_gruts.pop()
             except IndexError:
-                print("\n"+ "-"*70 +"\nIzvēlētajā grūtības failā ir beigušies vārdi!\n"+ "-"*70 +"\n")
+                print(
+                    "\n" +
+                    "-" *
+                    70 +
+                    "\nIzvēlētajā grūtības failā ir beigušies vārdi!\n" +
+                    "-" *
+                    70 +
+                    "\n")
                 raise
             game_gruts = Game(word_gruts)
             game_gruts.play()
@@ -127,7 +175,14 @@ while True:
                     try:
                         word_gruts = words_gruts.pop()
                     except IndexError:
-                        print("\n"+ "-"*70 +"\nIzvēlētajā grūtības failā ir beigušies vārdi!\n"+ "-"*70 +"\n")
+                        print(
+                            "\n" +
+                            "-" *
+                            70 +
+                            "\nIzvēlētajā grūtības failā ir beigušies vārdi!\n" +
+                            "-" *
+                            70 +
+                            "\n")
                         raise
                     game_gruts = Game(word_gruts)
                     game_gruts.play()
@@ -138,10 +193,19 @@ while True:
                             n = n + 1
                     print(f"\nGuessed word: {print_words}")
     if difficulty == 3:
+
         try:
             word_gruts = words_gruts.pop()
+
         except IndexError:
-            print("\n"+ "-"*70 +"\nIzvēlētajā grūtības failā ir beigušies vārdi!\n"+ "-"*70 +"\n")
+            print(
+                "\n" +
+                "-" *
+                70 +
+                "\nIzvēlētajā grūtības failā ir beigušies vārdi!\n" +
+                "-" *
+                70 +
+                "\n")
             raise
         game_gruts = Game(word_gruts)
         game_gruts.play()
@@ -155,7 +219,14 @@ while True:
                 try:
                     word_gruts = words_gruts.pop()
                 except IndexError:
-                    print("\n"+ "-"*70 +"\nIzvēlētajā grūtības failā ir beigušies vārdi!\n"+ "-"*70 +"\n")
+                    print(
+                        "\n" +
+                        "-" *
+                        70 +
+                        "\nIzvēlētajā grūtības failā ir beigušies vārdi!\n" +
+                        "-" *
+                        70 +
+                        "\n")
                     raise
                 game_gruts = Game(word_gruts)
                 game_gruts.play()
@@ -166,7 +237,41 @@ while True:
                         n = n + 1
                 print(f"\nGuessed word: {print_words}")
 
-    print('\n' + "_"*70)
+    if difficulty == 4:
+
+        word_API.upper()
+
+        print(word_API)
+        game_API.play(word_API)
+         if len(game_API.try_words) > 0:
+              guessed_words.append(''.join(game_API.try_words))
+               if len(guessed_words) > n:
+                    print_words = ', '.join(guessed_words)
+                    n = n + 1
+                print(f"\nGuessed word: {print_words}")
+                while game_API.lives != 0:
+                    try:
+                        word_API = word_API
+                    except IndexError:
+                        print(
+                            "\n" +
+                            "-" *
+                            70 +
+                            "\nIzvēlētajā grūtības failā ir beigušies vārdi!\n" +
+                            "-" *
+                            70 +
+                            "\n")
+                        raise
+                    game_API = word_API
+                    game_API.play()
+                    if len(game_API.try_words) > 0:
+                        guessed_words.append(''.join(game_API.try_words))
+                        if len(guessed_words) > n:
+                            print_words = ', '.join(guessed_words)
+                            n = n + 1
+                    print(f"\nGuessed word: {print_words}")
+
+    print('\n' + "_" * 70)
     play_again = input("\nVai vēlies spēli turpināt? \nyes / no\n")
     if play_again not in ["yes", "ye", "y"]:
         break
